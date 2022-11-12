@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HW Analytics App - Documents</title>
+    <title>HW Analytics App - User</title>
 </head>
-<header class="doc_header">
+<header class="user_header">
     <div>
-        <img src="/static/logo.svg" alt="logo"> HW Analytics App
+        <img src="logo.svg" alt="logo"> HW Analytics App
     </div>
     <a href="#" class="home">Home</a>
     <a href="#" class="about">About</a>
@@ -17,10 +17,10 @@
     <main>
         <section class="input">
             <article>
-                <h3 class="input_plc">Please enter the document UUID</h3>
-                <form class="form1" method="POST">
-                    <label for="doc_uuid"> Document UUID</label>
-                    <input type="text" name="doc_uuid" id="iddoc_uuid">
+                <h3 class="input_plc">Please enter the user UUID</h3>
+                <form class="form2" action="/data" method="get">
+                    <label for="user_uuid"> Document UUID</label>
+                    <input type="text" name="user_uuid" id="user_uuid">
                     <button type="submit">Search</button>
                 </form>
             </article>
