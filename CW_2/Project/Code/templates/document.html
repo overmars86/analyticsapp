@@ -18,12 +18,24 @@
         <section class="input">
             <article>
                 <h3 class="input_plc">Please enter the document UUID</h3>
-                <form class="form1" method="POST">
+                <form class="form1" method="POST" target="_blank", id="form1_search">
                     <label for="doc_uuid"> Document UUID</label>
-                    <input type="text" name="doc_uuid" id="iddoc_uuid">
-                    <button type="submit">Search</button>
+                    <span class="clearable">
+                    <input type="text" name="doc_uuid" id="iddoc_uuid" value="" maxlength="45" minlength="45">
+                    <i class="clearable__clear">&times;</i>
+                    </span>
+                    <button type="search">Search</button>
+                    <input type="reset" value="reset">
                 </form>
+                <script>("form1_search").reset();</script>
+
             </article>
+        </section>
+        <section class="show_country">
+            <img src="{{ url_for('viz') }}" alt="chart">
+        </section>
+        <section class="show_continent">
+            <img src="{{ url_for('viz_2') }}" alt="chart">
         </section>
     </main>
 </body>
