@@ -1,5 +1,6 @@
 import pandas as pd
 from doc import doc_by_country, doc_by_continent, add_cont
+from browser import by_borw
 from flask import Flask, render_template, request
 
 
@@ -36,6 +37,18 @@ def create_app():
         df = add_cont()
         return doc_by_continent(uuid, df)
     #Analyize by document route finsih
+
+    #Analyize by browser
+
+    @app.route("/browser/")
+    def browser():
+        return render_template("browser.html")
+
+
+    @app.route("/viz_3/")
+    def viz_3():
+        return by_borw()
+
 
 
     @app.route("/table")
