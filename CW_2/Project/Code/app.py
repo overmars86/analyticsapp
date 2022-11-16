@@ -1,6 +1,7 @@
 import pandas as pd
 from doc import doc_by_country, doc_by_continent, add_cont
-from browser import by_borw
+from browser import by_borw, by_os
+from time_spent import by_time
 from flask import Flask, render_template, request
 
 
@@ -38,7 +39,7 @@ def create_app():
         return doc_by_continent(uuid, df)
     #Analyize by document route finsih
 
-    #Analyize by browser
+    #Analyize by browser and OS
 
     @app.route("/browser/")
     def browser():
@@ -49,6 +50,19 @@ def create_app():
     def viz_3():
         return by_borw()
 
+
+    @app.route("/viz_4/")
+    def viz_4():
+        return by_os()
+
+    #Analyizing by time spent
+    @app.route("/time/")
+    def time():
+        return render_template("time.html")
+
+    @app.route("/viz_5/")
+    def viz_5():
+        return by_time()
 
 
     @app.route("/table")
