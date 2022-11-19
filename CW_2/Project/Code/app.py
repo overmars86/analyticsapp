@@ -2,7 +2,8 @@ import pandas as pd
 from doc import doc_by_country, doc_by_continent, add_cont
 from browser import by_borw, by_os
 from time_spent import by_time
-from flask import Flask, render_template, request
+from doc_list import list_by_doc, list_by_user
+from flask import Flask, render_template, request, send_file
 
 
 def create_app():
@@ -39,36 +40,63 @@ def create_app():
         return doc_by_continent(uuid, df)
     #Analyize by document route finsih
 
-    #Analyize by browser and OS
 
+    #----------------->Analyizing by browser and OS<-----------------------------------------#
     @app.route("/browser/")
     def browser():
-        return render_template("browser.html")
+        return render_template("browser.html") #Landing page to analyize by browser and OS
 
 
     @app.route("/viz_3/")
     def viz_3():
-        return by_borw()
+        return by_borw() #Analyize by browser function
 
 
     @app.route("/viz_4/")
     def viz_4():
-        return by_os()
+        return by_os() #Analyize by OS function
+    #----------------->Analyizing by browser and OS<-----------------------------------------#
 
-    #Analyizing by time spent
+
+
+    #----------------->Analyizing by time spent<-----------------------------------------#
     @app.route("/time/")
     def time():
-        return render_template("time.html")
+        return render_template("time.html") #The landing page for analytzing by time spent
 
     @app.route("/viz_5/")
     def viz_5():
-        return by_time()
+        return by_time() #Analyie by time spent function
+     #----------------->Analyizing by time spent<-----------------------------------------#
 
 
-    @app.route("/table")
-    def table():
-        df = pd.read_json('../data/sample_small.json', lines=True)
-        df = df.iloc[:10, :]
-        tb = df.to_html()
-        return str(tb)
+    #----------------->Listing by user based on doc UUID<-----------------------------------------#
+    @app.route("/listbydoc/",  methods=['GET', 'POST'])
+    def listbydoc():
+        return render_template("listbydoc.html") # Landing page for list by user
+
+
+    @app.route("/table_1", methods=['GET', 'POST'])
+    def table_1():
+        uuid3 = request.form.get("doc_uuid_2")
+        tb = list_by_doc(uuid3)
+        return render_template("table_1.html", tables= [tb], 
+        titles=[f'All readers for this Doc {uuid3}'])
+    #----------------->Listing by user based on doc UUID<-----------------------------------------#
+
+
+    #----------------->Listing by doc based on user UUID<-----------------------------------------#
+    @app.route("/listbyuser/",  methods=['GET', 'POST'])
+    def listbyuser():
+        return render_template("listbyuser.html") # Landing page for list by doc
+
+    @app.route("/table_2", methods=['GET', 'POST'])
+    def table_2():
+        uuid4 = request.form.get("user_uuid")
+        tb = list_by_user(uuid4)
+        return render_template("table_1.html", tables= [tb], 
+        titles=[f'All Docs for this User {uuid4}'])
+
+    #----------------->Listing by doc based on user UUID<-----------------------------------------#
+
     return app
