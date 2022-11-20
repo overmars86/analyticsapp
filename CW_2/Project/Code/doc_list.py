@@ -2,10 +2,10 @@ import numpy as np
 import pandas as pd
 
 def list_by_doc(uuid):
-    df = pd.read_json('../data/sample_small.json', lines=True)
-    df_2 = df[['visitor_uuid','subject_doc_id']]
-    df_2 = df_2.loc[df_2['subject_doc_id'] == uuid]
-    df_2 = df_2.rename(columns={'visitor_uuid':'User UUID','subject_doc_id':'Doc UUID'})
+    df = pd.read_json('../data/sample_small.json', lines=True) # Reading the json dataset
+    df_2 = df[['visitor_uuid','subject_doc_id']] # Re-arrange the dataframe to take only two columns
+    df_2 = df_2.loc[df_2['subject_doc_id'] == uuid] # Filtering based on the input
+    df_2 = df_2.rename(columns={'visitor_uuid':'User UUID','subject_doc_id':'Doc UUID'}) # Renam the columns
     #Styling
     styles = [
     dict(selector="tr:hover",
@@ -32,13 +32,11 @@ def list_by_doc(uuid):
                                     ("border-bottom" , "2px solid #00cccc"),                                    
                                       ]),
     dict(selector="caption", props=[("caption-side", "bottom")])]
-    # df_2 = df_2.style.hide_index().set_table_styles(
-    #     [{'selector': 'tr:hover', 'props': [('background-color', 'red')]}])
 
     df_2 = df_2.style.hide_index().set_table_styles(
-        styles).set_caption(f"Table 2 - List of Users related to Doc: {uuid}")
+        styles).set_caption(f"Table 1 - List of Users related to Doc: {uuid}") # Apply the above styling
     #Styling
-    tb = df_2.to_html()
+    tb = df_2.to_html() # Converting the table to html
     return tb
 
 
@@ -76,10 +74,6 @@ def list_by_user(uuid):
 
     df_2 = df_2.style.hide_index().set_table_styles(
         styles).set_caption(f"Table 2 - List of Docs related to User: {uuid}")
-    # properties = {"border": "2px solid gray"}
-    # df_2.style.set_properties(**properties)
-    # df_2 = df_2.style.set_table_styles(
-    #     [{'selector': 'tr:hover', 'props':[('background-color',' grey')]}])
-    #Styling
+   
     tb = df_2.to_html()
     return tb

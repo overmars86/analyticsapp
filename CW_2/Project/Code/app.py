@@ -9,8 +9,9 @@ from flask import Flask, render_template, request, send_file
 def create_app():
     app = Flask(__name__)
 
+    # The main page route
     @app.route("/")
-    def hello_world():
+    def main_page():
         return render_template("index.html")
 
     #Analyize by document route start
@@ -18,22 +19,15 @@ def create_app():
     def document():
         global uuid
         uuid = request.form.get("doc_uuid")
-        # if uuid is None:
-        #     return render_template("error.html") #and request.form.clear("doc_uuid")
-        # elif len(uuid) == 45:
-        #     return render_template("document.html") #and request.form.clear("doc_uuid")
-            
-        # else:
-        #     # chart = doc_by_country(str(uuid))
-        #     # print(chart)
-        #     print(uuid)
         return render_template("document.html")
             
 
+    # Viz the vistors' by country
     @app.route("/viz/")
     def viz():
         return doc_by_country(uuid)
 
+    # Viz the vistors' by continent
     @app.route("/viz_2/")
     def viz_2():
         df = add_cont()

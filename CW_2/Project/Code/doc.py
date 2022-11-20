@@ -15,17 +15,16 @@ def doc_by_country(uuid="140222143932-91796b01f94327ee809bd759fd0f6c76"):
 
     #reading the data and summarize it
     df = pd.read_json('../data/sample_small.json', lines=True)
-    df_count = df[['visitor_uuid','visitor_country','env_doc_id']]
-    df_count = df_count.loc[df_count['env_doc_id'] == uuid]
+    df_count = df[['visitor_uuid','visitor_country','subject_doc_id']]
+    df_count = df_count.loc[df_count['subject_doc_id'] == uuid]
     df_count['visitor_uuid'] = df_count['visitor_uuid'].drop_duplicates()
     df_count = df_count[['visitor_uuid','visitor_country']]
     df_count_gp = df_count.groupby(by='visitor_country').count().sort_values(
         by='visitor_uuid', ascending=False).reset_index()
-    # df_count = df_count.rename({"visitor_uuid":"No._of_unique_Vistors"}, axis=1)
-    # df_count = df_count.rename({"visitor_country":"Vistors'_Countries"}, axis=1)
+    df_count_gp = df_count_gp.rename(columns={"visitor_country":"Country","visitor_uuid":"Vistor's_UUID"})
     
     #identify x and y
-    x, y = "visitor_country", "visitor_uuid"
+    x, y = "Country", "Vistor's_UUID"
 
     #build the chart
     sns.barplot(data=df_count_gp, x = x, y = y, hue = x).set(
@@ -42,6 +41,7 @@ def doc_by_country(uuid="140222143932-91796b01f94327ee809bd759fd0f6c76"):
 def add_cont():
     df = pd.read_json('../data/sample_small.json', lines=True)
     df['Continent'] = 'none'
+    # Adding the continent based on the country
     df.loc[df['visitor_country'] == "US",'Continent'] ="North America"
     df.loc[df['visitor_country'] == "MX",'Continent'] ="North America"
     df.loc[df['visitor_country'] == "BR",'Continent'] ="South America"
@@ -141,15 +141,16 @@ def add_cont():
 def doc_by_continent(uuid:str("140222143932-91796b01f94327ee809bd759fd0f6c76"), df):
     fig, ax = plt.subplots(figsize=(8,8))
     ax = sns.set_style(style = "darkgrid")
-    df_count = df[['visitor_uuid','Continent','env_doc_id']]
-    df_count = df_count.loc[df_count['env_doc_id'] == uuid]
+    df_count = df[['visitor_uuid','Continent','subject_doc_id']]
+    df_count = df_count.loc[df_count['subject_doc_id'] == uuid]
     df_count['visitor_uuid'] = df_count['visitor_uuid'].drop_duplicates()
     df_count = df_count[['visitor_uuid','Continent']]
     df_count_gp = df_count.groupby(by='Continent').count().sort_values(
         by='visitor_uuid', ascending=False).reset_index()
     
     #identify x and y
-    x, y = 'Continent', 'visitor_uuid'
+    df_count_gp = df_count_gp.rename(columns={'visitor_uuid':"Vistor's_UUID"}) # Renaming the column
+    x, y = 'Continent', "Vistor's_UUID"
 
     #build the chart
     sns.barplot(data=df_count_gp, x = x, y = y, hue = x).set(
