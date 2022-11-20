@@ -42,33 +42,100 @@ def doc_by_country(uuid="140222143932-91796b01f94327ee809bd759fd0f6c76"):
 def add_cont():
     df = pd.read_json('../data/sample_small.json', lines=True)
     df['Continent'] = 'none'
-    df.loc[df['visitor_country'] == 'BR', 'Continent'] = 'South America'
-    df.loc[df['visitor_country'] == 'US', 'Continent'] = 'Noth America'
-    df.loc[df['visitor_country'] == 'MX', 'Continent'] = 'Noth America'
-    df.loc[df['visitor_country'] == 'CA', 'Continent'] = 'Noth America'
-    df.loc[df['visitor_country'] == 'GB', 'Continent'] = 'Europe'
-    df.loc[df['visitor_country'] == 'ES', 'Continent'] = 'Europe'
-    df.loc[df['visitor_country'] == 'PE', 'Continent'] = 'South America'
-    df.loc[df['visitor_country'] == 'IT', 'Continent'] = 'Europe'
-    df.loc[df['visitor_country'] == 'CO', 'Continent'] = 'South America'
-    df.loc[df['visitor_country'] == 'CL', 'Continent'] = 'South America'
-    df.loc[df['visitor_country'] == 'AU', 'Continent'] = 'Australia & Oceania'
-    df.loc[df['visitor_country'] == 'AR', 'Continent'] = 'South America'
-    df.loc[df['visitor_country'] == 'RU', 'Continent'] = 'Europe'
-    df.loc[df['visitor_country'] == 'FR', 'Continent'] = 'Europe'
-    df.loc[df['visitor_country'] == 'PT', 'Continent'] = 'Europe'
-    df.loc[df['visitor_country'] == 'PL', 'Continent'] = 'Europe'
-    df.loc[df['visitor_country'] == 'NL', 'Continent'] = 'Europe'
-    df.loc[df['visitor_country'] == 'SV', 'Continent'] = 'Noth America'
-    df.loc[df['visitor_country'] == 'DE', 'Continent'] = 'Europe'
-    df.loc[df['visitor_country'] == 'EC', 'Continent'] = 'South America'
-    df.loc[df['visitor_country'] == 'KR', 'Continent'] = 'Asia'
-    df.loc[df['visitor_country'] == 'GT', 'Continent'] = 'Noth America'
-    df.loc[df['visitor_country'] == 'JP', 'Continent'] = 'Asia'
-    df.loc[df['visitor_country'] == 'UA', 'Continent'] = 'Europe'
-    df.loc[df['visitor_country'] == 'CR', 'Continent'] = 'South America'
-    df.loc[df['visitor_country'] == 'IS', 'Continent'] = 'Europe'
-    df.loc[df['visitor_country'] == 'RS', 'Continent'] = 'Europe'
+    df.loc[df['visitor_country'] == "US",'Continent'] ="North America"
+    df.loc[df['visitor_country'] == "MX",'Continent'] ="North America"
+    df.loc[df['visitor_country'] == "BR",'Continent'] ="South America"
+    df.loc[df['visitor_country'] == "CA",'Continent'] ="North America"
+    df.loc[df['visitor_country'] == "GB",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "ES",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "PE",'Continent'] ="South America"
+    df.loc[df['visitor_country'] == "IT",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "CO",'Continent'] ="South America"
+    df.loc[df['visitor_country'] == "CL",'Continent'] ="South America"
+    df.loc[df['visitor_country'] == "AU",'Continent'] ="Australia"
+    df.loc[df['visitor_country'] == "AR",'Continent'] ="South America"
+    df.loc[df['visitor_country'] == "RU",'Continent'] ="Asia"
+    df.loc[df['visitor_country'] == "FR",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "PT",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "PL",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "NL",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "SV",'Continent'] ="North America"
+    df.loc[df['visitor_country'] == "DE",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "EC",'Continent'] ="South America"
+    df.loc[df['visitor_country'] == "KR",'Continent'] ="Asia"
+    df.loc[df['visitor_country'] == "GT",'Continent'] ="North America"
+    df.loc[df['visitor_country'] == "JP",'Continent'] ="Asia"
+    df.loc[df['visitor_country'] == "UA",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "CR",'Continent'] ="North America"
+    df.loc[df['visitor_country'] == "IS",'Continent'] ="Atlantic"
+    df.loc[df['visitor_country'] == "RS",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "TH",'Continent'] ="Asia"
+    df.loc[df['visitor_country'] == "VE",'Continent'] ="South America"
+    df.loc[df['visitor_country'] == "MA",'Continent'] ="Africa"
+    df.loc[df['visitor_country'] == "BZ",'Continent'] ="South America"
+    df.loc[df['visitor_country'] == "BE",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "GY",'Continent'] ="South America"
+    df.loc[df['visitor_country'] == "SE",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "RO",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "ZZ",'Continent'] ="Unknown"
+    df.loc[df['visitor_country'] == "GR",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "EG",'Continent'] ="Africa"
+    df.loc[df['visitor_country'] == "DO",'Continent'] ="North America"
+    df.loc[df['visitor_country'] == "BG",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "BA",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "NO",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "PA",'Continent'] ="North America"
+    df.loc[df['visitor_country'] == "CN",'Continent'] ="Asia"
+    df.loc[df['visitor_country'] == "LT",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "CZ",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "TR",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "DZ",'Continent'] ="Africa"
+    df.loc[df['visitor_country'] == "IE",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "HR",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "CU",'Continent'] ="North America"
+    df.loc[df['visitor_country'] == "HU",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "JO",'Continent'] ="Asia"
+    df.loc[df['visitor_country'] == "ID",'Continent'] ="Asia"
+    df.loc[df['visitor_country'] == "SA",'Continent'] ="Asia"
+    df.loc[df['visitor_country'] == "AE",'Continent'] ="Asia"
+    df.loc[df['visitor_country'] == "CH",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "SG",'Continent'] ="Asia"
+    df.loc[df['visitor_country'] == "NZ",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "NG",'Continent'] ="Africa"
+    df.loc[df['visitor_country'] == "GP",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "AO",'Continent'] ="Africa"
+    df.loc[df['visitor_country'] == "ZA",'Continent'] ="Africa"
+    df.loc[df['visitor_country'] == "FJ",'Continent'] ="Pacific"
+    df.loc[df['visitor_country'] == "SI",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "BY",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "PH",'Continent'] ="Asia"
+    df.loc[df['visitor_country'] == "IN",'Continent'] ="Asia"
+    df.loc[df['visitor_country'] == "MQ",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "EE",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "MK",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "PY",'Continent'] ="South America"
+    df.loc[df['visitor_country'] == "CY",'Continent'] ="Asia"
+    df.loc[df['visitor_country'] == "PR",'Continent'] ="North America"
+    df.loc[df['visitor_country'] == "AL",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "NP",'Continent'] ="Asia"
+    df.loc[df['visitor_country'] == "DK",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "HK",'Continent'] ="Asia"
+    df.loc[df['visitor_country'] == "TW",'Continent'] ="Asia"
+    df.loc[df['visitor_country'] == "BB",'Continent'] ="North America"
+    df.loc[df['visitor_country'] == "AT",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "EU",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "TN",'Continent'] ="Africa"
+    df.loc[df['visitor_country'] == "SK",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "MD",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "JM",'Continent'] ="North America"
+    df.loc[df['visitor_country'] == "AP",'Continent'] ="Asia"
+    df.loc[df['visitor_country'] == "PF",'Continent'] ="Europe"
+    df.loc[df['visitor_country'] == "BS",'Continent'] ="North America"
+    df.loc[df['visitor_country'] == "CW",'Continent'] ="South America"
+    df.loc[df['visitor_country'] == "AW",'Continent'] ="South America"
+    df.loc[df['visitor_country'] == "UY",'Continent'] ="South America"
+    df.loc[df['visitor_country'] == "PK",'Continent'] ="Asia"
+    df.loc[df['visitor_country'] == "TT",'Continent'] ="South America"
     return df
 
 def doc_by_continent(uuid:str("140222143932-91796b01f94327ee809bd759fd0f6c76"), df):
