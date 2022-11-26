@@ -11,8 +11,10 @@ def create_app():
     app = Flask(__name__)
 
     # The main page route
-    @app.route("/")
+    @app.route("/", methods=["GET","POST"])
     def main_page():
+        ds = request.form.get("drop_l")
+        print(int(ds))
         return render_template("index.html")
 
     #Analyize by document route start
