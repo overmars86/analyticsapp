@@ -48,6 +48,9 @@ def by_os():
     df_os = df_os['visitor_useragent'].str.split(n=10, expand=True)
     df_os[1] = df_os[1].str.replace('(', '')
     df_os[1] = df_os[1].str.replace(';', '')
+    df_os[0] = df_os[0].str.findall(r'[A-Z][a-z]+')
+    df_os[0] = df_os[0].apply(lambda x: ','.join(map(str, x)))
+    df_os = df_os.loc[df_os[0] == "Mozilla"]
     df_os_1 = df_os[1].value_counts().reset_index()
     df_os_1 = df_os_1.rename(columns={'index':'OS'})
     df_os_1 = df_os_1.rename(columns={1:'Count'})
@@ -57,7 +60,7 @@ def by_os():
 
     #build the chart
     sns.barplot(data=df_os_1, x = x, y = y, hue = x).set(
-        title="Number of visits by OS")
+        title="Mozilla visotors by OS")
     print("done...")
     canvas = FC(fig)
     img = io.BytesIO()

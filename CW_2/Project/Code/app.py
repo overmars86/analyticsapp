@@ -3,6 +3,7 @@ from doc import doc_by_country, doc_by_continent, add_cont
 from browser import by_borw, by_os
 from time_spent import by_time
 from doc_list import list_by_doc, list_by_user
+from also_like import also_like
 from flask import Flask, render_template, request, send_file
 
 
@@ -88,9 +89,24 @@ def create_app():
     def table_2():
         uuid4 = request.form.get("user_uuid")
         tb = list_by_user(uuid4)
-        return render_template("table_1.html", tables= [tb], 
+        return render_template("table_2.html", tables= [tb], 
         titles=[f'All Docs for this User {uuid4}'])
 
     #----------------->Listing by doc based on user UUID<-----------------------------------------#
+
+
+    #-----------------< Also Like >---------------------------------------------------------------#
+    @app.route("/also_like/", methods=["GET","POST"])
+    def also():
+        return render_template("also_like.html") # Also like landing page
+
+    @app.route("/table_3/", methods=['GET', 'POST']) # The function page
+    def table_3():
+        uuid5 = request.form.get("doc_uuid_3")
+        df = also_like(uuid5)
+        return render_template("table_3.html", tables= [df], titles=[f'Other users also like to read'])
+    #-----------------< Also Like >---------------------------------------------------------------#
+
+
 
     return app
